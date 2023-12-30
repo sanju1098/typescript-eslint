@@ -1,0 +1,89 @@
+{
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"extends": [
+		"standard-with-typescript",
+		"plugin:react/recommended"
+
+		// // Problem: “no-undef”
+		// // Error sample: ‘test’ is not defined
+		// "plugin:@typescript-eslint/recommended"
+	],
+	"parserOptions": {
+		"ecmaVersion": "latest",
+		"sourceType": "module"
+	},
+	"plugins": [
+		"react",
+
+		// React Hooks rules
+		"react-hooks"
+	],
+	"rules": {
+		//It should no longer raise errors related to duplicate imports.
+		//   "import/no-duplicates": "off",
+
+		"@typescript-eslint/no-non-null-assertion": "warn", //"off", "warn", "error"
+		"@typescript-eslint/no-unused-vars": "warn", //"off", "warn", "error"
+
+		// Problem: “‘no-use-before-define”
+		// Error sample: ‘React’ was used before it was defined
+		"no-use-before-define": "off",
+		"@typescript-eslint/no-use-before-define": ["error"],
+
+		// Problem: “‘react/jsx-filename-extension”
+		// Error sample: JSX not allowed in files with extension ‘.tsx’
+		"react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
+
+		// Problem: “import/extensions”
+		// Error sample: Missing file extension ‘tsx’ for ‘./App’
+		"import/extensions": [
+			"error",
+			"ignorePackages",
+			{
+				"ts": "never",
+				"tsx": "never"
+			}
+		],
+
+		// Problem: “no-shadow”
+		// Error sample: ‘Enum’ is already declared in the upper scope
+		"no-shadow": "off",
+		"@typescript-eslint/no-shadow": ["error"],
+
+		// Force all functions have explicit return type
+		// By enabling this rule, it will generate some ESLint errors that will be fixed by adding explicitly the return type of the functions on your code.
+		// "@typescript-eslint/explicit-function-return-type": [
+		// 	"error",
+		// 	{
+		// 		"allowExpressions": true
+		// 	}
+		// ],
+
+		//If we don't need explicit return type
+		"@typescript-eslint/explicit-function-return-type": "off",
+
+		// Max length of line code
+		"max-len": ["warn", { "code": 80 }],
+
+		// React Hooks rules
+		"react-hooks/rules-of-hooks": "error",
+		"react-hooks/exhaustive-deps": "warn",
+
+		// Prefer use of default export
+		"import/prefer-default-export": "off",
+
+		// Prop Types rules
+		"react/prop-types": "off"
+	},
+
+	// Problem: “import/no-unresolved”
+	// Error sample: Unable to resolve path to module ‘./App’
+	"settings": {
+		"import/resolver": {
+			"typescript": {}
+		}
+	}
+}
